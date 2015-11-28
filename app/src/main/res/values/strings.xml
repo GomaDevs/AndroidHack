@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Androidhack</string>
+    <string name="action_settings">Settings</string>
+    <string name="username">User Name : </string>
+    <string name="password">Password : </string>
+    <string name="title">Titre : </string>
+    <string name="buttonok">Accepter</string>
+    <string name="buttonCan">Annuler</string>
+
+    <string name="ajouter">Ajouter</string>
+    <string name="supprimer">Supprimer</string>
+
+</resources>
