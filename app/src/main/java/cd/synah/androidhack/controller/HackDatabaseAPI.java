@@ -53,10 +53,10 @@ public class HackDatabaseAPI {
 
         @Override
         public void onCreate(SQLiteDatabase db) {
-            db.execSQL(creation_table_USER);
-
             //showing the log
             Log.w(TAG,creation_table_USER);
+
+            db.execSQL(creation_table_USER);
 
         }
 

@@ -1,5 +1,6 @@
 package cd.synah.androidhack;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -8,8 +9,15 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
+
+import cd.synah.androidhack.gui.AjoutActivity;
+
 
 public class MainActivity extends AppCompatActivity {
+
+
+    Button xx;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +35,17 @@ public class MainActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+
+
+        xx=(Button)findViewById(R.id.buttonOk);
+        xx.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), AjoutActivity.class));
+            }
+        });
+
     }
 
     @Override

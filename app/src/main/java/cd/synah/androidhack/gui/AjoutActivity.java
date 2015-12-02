@@ -1,5 +1,6 @@
 package cd.synah.androidhack.gui;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -10,7 +11,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import cd.synah.androidhack.R;
 import cd.synah.androidhack.controller.HackDatabaseAPI;
@@ -22,11 +22,14 @@ import cd.synah.androidhack.model.User;
 public class AjoutActivity extends AppCompatActivity {
 
     private Button btnAdd, btnDelete;
-    private EditText edUser,edPwd, edTitre;
+    private EditText edUser;
+    private EditText edPwd;
+    private EditText edTitre;
 
-    User Utilisateur=new User();
+    private User Utilisateur = new User();
 
     HackDatabaseAPI myCon;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,38 +49,35 @@ public class AjoutActivity extends AppCompatActivity {
         });
         // Le code ICI
 
-        edUser=(EditText)findViewById(R.id.ed_username);
-        edPwd=(EditText)findViewById(R.id.ed_password);
-        edTitre=(EditText)findViewById(R.id.ed_title);
+        edUser = (EditText) findViewById(R.id.ed_username);
+        edPwd = (EditText) findViewById(R.id.ed_password);
+        edTitre = (EditText) findViewById(R.id.ed_title);
 
-        btnAdd=(Button)findViewById(R.id.buttonAdd);
-        btnDelete=(Button)findViewById(R.id.buttonDel);
+        btnAdd = (Button) findViewById(R.id.buttonAdd);
+        btnDelete = (Button) findViewById(R.id.buttonDel);
 
         //Initialisation de la base des données ici
-        myCon=new HackDatabaseAPI(this);
+        myCon = new HackDatabaseAPI(this);
         myCon.open();
 
         //Creation des Listener pour les boutons
         btnAdd.setOnClickListener(quandJeClickLeButton); //Utilisation de la méthode événement
 
         //Listener type 2
-        btnDelete.setOnClickListener(new View.OnClickListener(){
+        btnDelete.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
-                //Le code ici
+                startActivity(new Intent(getApplicationContext(), UserListActivity.class));
             }
         });
-
-
 
     }
 
 
-
     //Method View.OnClickListener
 
-    private View.OnClickListener quandJeClickLeButton=new View.OnClickListener(){
+    private View.OnClickListener quandJeClickLeButton = new View.OnClickListener() {
 
         @Override
         public void onClick(View v) {
@@ -88,16 +88,13 @@ public class AjoutActivity extends AppCompatActivity {
             //insert dans la base des données
             myCon.insertNewUser(Utilisateur);
 
-            Toast.makeText(getApplicationContext(), "Nouveau cours a ete enregistre", Toast.LENGTH_SHORT)
-                    .show();
+          //  Toast.makeText(getApplicationContext(), edUser.getText().toString() + "/" + edPwd.getText().toString() + "Nouveau cours a ete enregistre", Toast.LENGTH_SHORT).show();
             edUser.setText("");
             edPwd.setText("");
             edTitre.setText("");
 
         }
     };
-
-
 
 
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -122,5 +119,13 @@ public class AjoutActivity extends AppCompatActivity {
     }
 
 
+    @Override
+    public void onStart() {
+        super.onStart();
+    }
 
+    @Override
+    public void onStop() {
+        super.onStop();
+    }
 }
